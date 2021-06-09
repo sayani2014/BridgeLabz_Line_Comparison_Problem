@@ -22,12 +22,14 @@ public class LineComparisonComputation {
   	        
 		String lineA = String.valueOf(lengthLineA);
 		String lineB = String.valueOf(lengthLineB);
-		if(lineA.equals(lineB))
+		if(lineA.compareTo(lineB) == 0)
 			System.out.println("Line A and Line B are equal");
-		else
-			System.out.println("Line A and Line B are not equal");
+		else if(lineA.compareTo(lineB) > 0)
+			System.out.println("Line A is greater than Line B");
+		else if (lineB.compareTo(lineA) > 0)
+			System.out.println("Line B is greater than Line A");
 		
-		System.out.println("Length of the line A is : "+lengthLineA+ "units.");
-		System.out.println("Length of the line B is : "+lengthLineB+ "units.");
+		System.out.println("Length of the line A is : "+lengthLineA+ " units.");
+		System.out.println("Length of the line B is : "+lengthLineB+ " units.");
 	}
 }
