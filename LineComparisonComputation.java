@@ -1,35 +1,56 @@
+/* Calculate length of 2 lines and compare them using compare() applying the OOPs Concept
+ * A Length as 2 Points (x1, y1) and (x2, y2)
+ * Length of a Line = sqrt( (x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+ *
+ * @author: SAYANI KOLEY
+ * @since: 14/06/2021
+ */
 import java.util.*;
-import java.lang.Math.*;
 
 public class LineComparisonComputation {
-	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the value of (x1,y1) and (x2,y2) of line A: ");
-                float x1=sc.nextFloat();
-	        float y1=sc.nextFloat();
-	        float x2=sc.nextFloat();
-	        float y2=sc.nextFloat();    
-		double lengthLineA = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
- 	 	System.out.println("The 2 points of the line A are: (" +x1+ "," +y1+ ") and (" +x2+ "," +y2+ ")");
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
 
-		System.out.print("Enter the value of (m1,n1) and (m2,n2) of line B: ");
-                float m1=sc.nextFloat();
-	        float n1=sc.nextFloat();
-	        float m2=sc.nextFloat();
-	        float n2=sc.nextFloat();    
-		double lengthLineB = Math.sqrt(Math.pow(m2 - m1, 2) + Math.pow(n2 - n1, 2));
- 	 	System.out.println("The 2 points of the line B are: (" +m1+ "," +n1+ ") and (" +m2+ "," +n2+ ")");	 	    
-  	        
-		String lineA = String.valueOf(lengthLineA);
-		String lineB = String.valueOf(lengthLineB);
-		if(lineA.compareTo(lineB) == 0)
-			System.out.println("Line A and Line B are equal");
-		else if(lineA.compareTo(lineB) > 0)
-			System.out.println("Line A is greater than Line B");
-		else if (lineB.compareTo(lineA) > 0)
-			System.out.println("Line B is greater than Line A");
-		
-		System.out.println("Length of the line A is : "+lengthLineA+ " units.");
-		System.out.println("Length of the line B is : "+lengthLineB+ " units.");
-	}
+        //Input values from user for Line A and compute the length of Line A
+        float[] input1 = inputValues(sc);
+        System.out.println("The 2 points of the line A are: (" +input1[0]+ "," +input1[1]+ ") and (" +input1[2]+ "," +input1[3]+ ")");
+        double lengthLineA = computeLength(input1);
+
+        //Input values from user for Line B and compute the length of Line B
+        float[] input2 = inputValues(sc);
+        System.out.println("The 2 points of the line B are: (" +input2[0]+ "," +input2[1]+ ") and (" +input2[2]+ "," +input2[3]+ ")");
+        double lengthLineB = computeLength(input2);
+
+        //Print the lengths of Line A and Line B
+        System.out.println("Length of the line A is : "+lengthLineA+ " units.");
+        System.out.println("Length of the line B is : "+lengthLineB+ " units.");
+
+        //Compare the lengths of line A and line B
+        compareLength(lengthLineA, lengthLineB);
+    }
+    private static float[] inputValues(Scanner input) {
+        System.out.print("Enter the value of (x1,y1) and (x2,y2): ");
+        float x1=input.nextFloat();
+        float y1=input.nextFloat();
+        float x2=input.nextFloat();
+        float y2=input.nextFloat();
+
+        return new float[] {x1, y1, x2, y2};
+    }
+    private static double computeLength(float[] input) {
+        double lengthLine = Math.sqrt(Math.pow(input[2] - input[0], 2) + Math.pow(input[3] - input[1], 2));
+
+        return lengthLine;
+    }
+    private static void compareLength(double lengthLineA, double lengthLineB) {
+        String lineA = String.valueOf(lengthLineA);
+        String lineB = String.valueOf(lengthLineB);
+
+        if(lineA.compareTo(lineB) == 0)
+            System.out.println("Line A and Line B are equal");
+        else if(lineA.compareTo(lineB) > 0)
+            System.out.println("Line A is greater than Line B");
+        else if (lineB.compareTo(lineA) > 0)
+            System.out.println("Line B is greater than Line A");
+    }
 }
